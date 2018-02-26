@@ -4,9 +4,7 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
-import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.Animator;
@@ -18,7 +16,7 @@ import com.jogamp.opengl.util.Animator;
  * @author Florian Widder
  *
  */
-public class Main implements GLEventListener {
+public class Main {
 
 	public static void main(String[] args) {
 		// Create frame
@@ -60,29 +58,4 @@ public class Main implements GLEventListener {
 		// Set focus of frame to canvas
 		canvas.requestFocusInWindow();
 	}
-
-	@Override
-	public void display(GLAutoDrawable arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void dispose(GLAutoDrawable arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void init(GLAutoDrawable arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
