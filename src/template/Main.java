@@ -1,4 +1,4 @@
-package labs.lab1.task1;
+package template;
 
 import javax.swing.JFrame;
 
@@ -24,11 +24,10 @@ public class Main {
 		GLCapabilities capabilities = new GLCapabilities(profile);
 		// Create a simple canvas for drawing
 		GLCanvas canvas = new GLCanvas(capabilities);
-		// Create two random Lines
-		SimpleLine simple1 = new SimpleLine((float) Math.random(), (float) Math.random(), (float) Math.random(),
-				(float) Math.random(), (float) Math.random(), (float) Math.random(), (float) Math.random());
-		// Add lines to canvas
-		canvas.addGLEventListener(simple1);
+		// Create Components
+
+		// Add Components
+		// canvas.addGLEventListener(simple1);
 		// Add canvas to frame
 		frame.add(canvas);
 		// Create Animator for canvas
