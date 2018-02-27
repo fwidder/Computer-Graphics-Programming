@@ -1,8 +1,6 @@
 package labs.lab1.task1;
 
-import java.awt.Frame;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
@@ -20,7 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Create frame
-		Frame frame = new Frame("SimpleLine Demo");
+		JFrame frame = new JFrame("SimpleLine Demo");
 		// Set openGL settings
 		GLProfile profile = GLProfile.get(GLProfile.GL2);
 		GLCapabilities capabilities = new GLCapabilities(profile);
@@ -40,21 +38,9 @@ public class Main {
 		final Animator animator = new Animator(canvas);
 		// Set frame settings
 		frame.setSize(640, 480);
-		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
-		// Make frame closable
-		frame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				new Thread(new Runnable() {
-
-					public void run() {
-						animator.stop();
-						System.exit(0);
-					}
-				}).start();
-			}
-		});
+		// Start Animator
+		animator.start();
 		// Set focus of frame to canvas
 		canvas.requestFocusInWindow();
 	}
