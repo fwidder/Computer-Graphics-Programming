@@ -1,0 +1,1 @@
+Draw a grid of 50 x 50 points. Hint: use two for loops. 

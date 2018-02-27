@@ -1,0 +1,1 @@
+Draw a grid made up of 10 vertical lines and 10 horizontal lines. 

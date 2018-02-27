@@ -1,5 +1,6 @@
 package labs.lab1.task1;
 
+import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
@@ -44,7 +45,7 @@ public class SimpleLine implements GLEventListener {
 		// set line color
 		gl.glColor3d(color_red, color_green, color_blue);
 		// Set drawing type to line
-		gl.glBegin(GL2.GL_LINES);
+		gl.glBegin(GL.GL_LINES);
 		// Draw line from a to b
 		gl.glVertex2f(point_a_x, point_a_y);
 		gl.glVertex2f(point_b_x, point_b_y);

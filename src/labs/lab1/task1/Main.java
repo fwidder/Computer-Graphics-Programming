@@ -1,5 +1,8 @@
 package labs.lab1.task1;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 
 import com.jogamp.opengl.GLCapabilities;
@@ -40,5 +43,19 @@ public class Main {
 		animator.start();
 		// Set focus of frame to canvas
 		canvas.requestFocusInWindow();
+
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						animator.stop();
+						System.exit(0);
+					}
+				}).start();
+			}
+		});
 	}
 }
