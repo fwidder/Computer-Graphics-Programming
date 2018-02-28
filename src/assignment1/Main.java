@@ -2,6 +2,7 @@ package assignment1;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 
@@ -26,15 +27,25 @@ public class Main {
 		// Create a simple canvas for drawing
 		GLCanvas canvas = new GLCanvas(capabilities);
 		// Create Components
-		Stars starts = new Stars();
+		Stars stars = new Stars();
 		Trees trees = new Trees();
 		Plane plane = new Plane();
-		Ground ground = new Ground();
-		// Add Components
-		canvas.addGLEventListener(starts);
+		Mountain mountain = new Mountain();
+		Static_Ground static_Ground = new Static_Ground();
+		// Add Components to canvas
+		canvas.addGLEventListener(stars);
+		canvas.addGLEventListener(mountain);
 		canvas.addGLEventListener(trees);
-		canvas.addGLEventListener(ground);
+		canvas.addGLEventListener(static_Ground);
 		canvas.addGLEventListener(plane);
+		// Add Components to HashMap
+		HashMap<String, GraphicObject> Graphics = new HashMap<String, GraphicObject>();
+		Graphics.put("stars", stars);
+		Graphics.put("plane", plane);
+		Graphics.put("tree1", trees);
+		Graphics.put("mountain", mountain);
+		Graphics.put("static_ground", static_Ground);
+		new Controller(Graphics);
 		// Add canvas to frame
 		frame.add(canvas);
 		// Create Animator for canvas
@@ -48,6 +59,7 @@ public class Main {
 		// Set focus of frame to canvas
 		canvas.requestFocusInWindow();
 
+		// Make window close kill the app
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

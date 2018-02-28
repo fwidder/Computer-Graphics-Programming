@@ -2,9 +2,8 @@ package assignment1;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLEventListener;
 
-public class Plane implements GLEventListener {
+public class Plane extends GraphicObject {
 
 	private Point offset, window1, window2, window3, window4, body_p1, body_p2, body_p3, body_p4, rudder_p1, rudder_p2,
 			rudder_p3, rudder_p4, front_window_p1, front_window_p2, front_window_p3;
@@ -29,7 +28,6 @@ public class Plane implements GLEventListener {
 
 	@Override
 	public void display(GLAutoDrawable arg0) {
-		recalc();
 		GL2 gl = arg0.getGL().getGL2();
 
 		// Body
@@ -87,11 +85,18 @@ public class Plane implements GLEventListener {
 
 	@Override
 	public void init(GLAutoDrawable arg0) {
-		offset = new Point(0f, 0);
+		offset = new Point(-1.3f, 0);
+		recalc();
 	}
 
 	@Override
 	public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void move(float f) {
 		// TODO Auto-generated method stub
 
 	}

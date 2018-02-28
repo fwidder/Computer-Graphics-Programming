@@ -2,29 +2,8 @@ package assignment1;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLEventListener;
 
-public class Trees implements GLEventListener {
-
-	private void drawCircle(GL2 gl, float x, float y, float r) {
-		float x1, y1, x2, y2;
-		float angle;
-		double radius = r;
-
-		x1 = x;
-		y1 = y;
-
-		gl.glBegin(GL2.GL_TRIANGLE_FAN);
-		gl.glVertex2f(x1, y1);
-
-		for (angle = 1.0f; angle < 361.0f; angle += 0.2) {
-			x2 = (float) (x1 + Math.sin(angle) * radius);
-			y2 = (float) (y1 + Math.cos(angle) * radius);
-			gl.glVertex2f(x2, y2);
-		}
-
-		gl.glEnd();
-	}
+public class Trees extends GraphicObject {
 
 	@Override
 	public void display(GLAutoDrawable arg0) {
@@ -78,4 +57,29 @@ public class Trees implements GLEventListener {
 
 	}
 
+	@Override
+	public void move(float f) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void drawCircle(GL2 gl, float x, float y, float r) {
+		float x1, y1, x2, y2;
+		float angle;
+		double radius = r;
+
+		x1 = x;
+		y1 = y;
+
+		gl.glBegin(GL2.GL_TRIANGLE_FAN);
+		gl.glVertex2f(x1, y1);
+
+		for (angle = 1.0f; angle < 361.0f; angle += 0.2) {
+			x2 = (float) (x1 + Math.sin(angle) * radius);
+			y2 = (float) (y1 + Math.cos(angle) * radius);
+			gl.glVertex2f(x2, y2);
+		}
+
+		gl.glEnd();
+	}
 }
