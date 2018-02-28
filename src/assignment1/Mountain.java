@@ -19,14 +19,12 @@ public class Mountain extends GraphicObject {
 
 		// Mountain Layer
 		gl.glBegin(GL2.GL_TRIANGLES);
-		gl.glColor3f(0.5f, 0.4f, 0.5f);
 		for (int i = 0; i < points.length; i++) {
-
-			gl.glColor3f(0.5f, 0.4f, 0.5f);
+			gl.glColor3f(0.3f, 0.3f, 0.3f);
 			gl.glVertex2f(points[i][0].getX(), points[i][0].getY());
 			gl.glColor3f(1, 1, 1);
 			gl.glVertex2f(points[i][1].getX(), points[i][1].getY());
-			gl.glColor3f(0.5f, 0.4f, 0.5f);
+			gl.glColor3f(0.3f, 0.3f, 0.3f);
 			gl.glVertex2f(points[i][2].getX(), points[i][2].getY());
 		}
 		gl.glEnd();
