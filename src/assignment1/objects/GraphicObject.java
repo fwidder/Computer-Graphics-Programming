@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1.objects;
 
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;

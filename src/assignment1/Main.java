@@ -11,6 +11,13 @@ import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.Animator;
 
+import assignment1.objects.GraphicObject;
+import assignment1.objects.Mountain;
+import assignment1.objects.Plane;
+import assignment1.objects.Stars;
+import assignment1.objects.Static_Ground;
+import assignment1.objects.Trees;
+
 /**
  * 
  * @author Florian Widder

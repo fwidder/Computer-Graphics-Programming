@@ -2,6 +2,8 @@ package assignment1;
 
 import java.util.HashMap;
 
+import assignment1.objects.GraphicObject;
+
 public class Controller {
 	private HashMap<String, GraphicObject> Objects;
 

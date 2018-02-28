@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1.objects;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
