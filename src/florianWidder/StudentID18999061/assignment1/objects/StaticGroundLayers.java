@@ -1,8 +1,19 @@
-package assignment1.objects;
+package florianWidder.StudentID18999061.assignment1.objects;
 
 import com.jogamp.opengl.GL2;
 
+/**
+ * @author Florian Widder
+ * @author Student ID 18999061
+ */
 public class StaticGroundLayers extends GraphicObject {
+	/**
+	 * Creates two static Ground Layers.
+	 */
+	public StaticGroundLayers() {
+		super();
+	}
+
 	@Override
 	protected void realDraw(GL2 gl) {
 		// Middle Layer
@@ -44,9 +55,26 @@ public class StaticGroundLayers extends GraphicObject {
 	}
 
 	@Override
+	@Deprecated
 	public void calculate() {
 		// Nothing to calculate
 
+	}
+
+	/**
+	 * Color is Static calculated!
+	 */
+	@Deprecated
+	public void setColor(float red, float green, float blue) {
+		return;
+	}
+
+	/**
+	 * Color is Static calculated!
+	 */
+	@Deprecated
+	public void setColor(float red, float green, float blue, float transparency) {
+		return;
 	}
 
 }

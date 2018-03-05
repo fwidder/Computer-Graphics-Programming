@@ -1,9 +1,18 @@
-package assignment1.objects;
+package florianWidder.StudentID18999061.assignment1.objects;
 
 import com.jogamp.opengl.GL2;
 
+/**
+ * @author Florian Widder
+ * @author Student ID 18999061
+ */
 public class Tree extends GraphicObject {
-
+	/**
+	 * Creates a Tree at the passed x position.
+	 * 
+	 * @param x
+	 *            the x position for the Tree
+	 */
 	public Tree(float x) {
 		super(new Point(x, 0));
 	}
@@ -31,8 +40,25 @@ public class Tree extends GraphicObject {
 	}
 
 	@Override
+	@Deprecated
 	public void calculate() {
 		// Nothing to calculate
 
+	}
+
+	/**
+	 * Color is Static calculated!
+	 */
+	@Deprecated
+	public void setColor(float red, float green, float blue) {
+		return;
+	}
+
+	/**
+	 * Color is Static calculated!
+	 */
+	@Deprecated
+	public void setColor(float red, float green, float blue, float transparency) {
+		return;
 	}
 }
