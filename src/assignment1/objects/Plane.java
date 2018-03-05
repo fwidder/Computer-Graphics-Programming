@@ -1,35 +1,19 @@
 package assignment1.objects;
 
 import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.GLAutoDrawable;
 
 public class Plane extends GraphicObject {
 
-	private Point offset, window1, window2, window3, window4, body_p1, body_p2, body_p3, body_p4, rudder_p1, rudder_p2,
+	private Point window1, window2, window3, window4, body_p1, body_p2, body_p3, body_p4, rudder_p1, rudder_p2,
 			rudder_p3, rudder_p4, front_window_p1, front_window_p2, front_window_p3;
 
-	private void recalc() {
-		body_p1 = new Point(0 + offset.getX(), 0 + offset.getY());
-		body_p2 = new Point(0.06f + offset.getX(), -0.03f + offset.getY());
-		body_p3 = new Point(0.26f + offset.getX(), -0.03f + offset.getY());
-		body_p4 = new Point(0.2f + offset.getX(), 0f + offset.getY());
-		rudder_p1 = new Point(0.03f + offset.getX(), 0f + offset.getY());
-		rudder_p2 = new Point(0.06f + offset.getX(), 0f + offset.getY());
-		rudder_p3 = new Point(0.05f + offset.getX(), 0.06f + offset.getY());
-		rudder_p4 = new Point(0.03f + offset.getX(), 0.06f + offset.getY());
-		window1 = new Point(0.18f + offset.getX(), -0.015f + offset.getY());
-		window2 = new Point(0.15f + offset.getX(), -0.015f + offset.getY());
-		window3 = new Point(0.12f + offset.getX(), -0.015f + offset.getY());
-		window4 = new Point(0.09f + offset.getX(), -0.015f + offset.getY());
-		front_window_p1 = new Point(0.22f + offset.getX(), -0.01f + offset.getY());
-		front_window_p2 = new Point(0.24f + offset.getX(), -0.02f + offset.getY());
-		front_window_p3 = new Point(0.22f + offset.getX(), -0.02f + offset.getY());
+	public Plane(Point position) {
+		super(position);
+		calculate();
 	}
 
 	@Override
-	public void display(GLAutoDrawable arg0) {
-		GL2 gl = arg0.getGL().getGL2();
-
+	protected void realDraw(GL2 gl) {
 		// Body
 		gl.glBegin(GL2.GL_QUADS);
 		gl.glColor3f(0f, 0f, 0.3f);
@@ -78,27 +62,31 @@ public class Plane extends GraphicObject {
 	}
 
 	@Override
-	public void dispose(GLAutoDrawable arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void init(GLAutoDrawable arg0) {
-		offset = new Point(-1.3f, 0);
-		recalc();
-	}
-
-	@Override
-	public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void move(float f) {
-		// TODO Auto-generated method stub
-
+	public void calculate() {
+		if (!visible || position.getX() >= 1.1f)
+			position.setX(-1.3f);
+		else {
+			float mx;
+			long currentTime = System.currentTimeMillis(), time = currentTime - lastUpdate;
+			mx = position.getX() + (dx / 1000) * time;
+			position.setX(mx);
+			lastUpdate = currentTime;
+		}
+		body_p1 = new Point(0 + position.getX(), 0 + position.getY());
+		body_p2 = new Point(0.06f + position.getX(), -0.03f + position.getY());
+		body_p3 = new Point(0.26f + position.getX(), -0.03f + position.getY());
+		body_p4 = new Point(0.2f + position.getX(), 0f + position.getY());
+		rudder_p1 = new Point(0.03f + position.getX(), 0f + position.getY());
+		rudder_p2 = new Point(0.06f + position.getX(), 0f + position.getY());
+		rudder_p3 = new Point(0.05f + position.getX(), 0.06f + position.getY());
+		rudder_p4 = new Point(0.03f + position.getX(), 0.06f + position.getY());
+		window1 = new Point(0.18f + position.getX(), -0.015f + position.getY());
+		window2 = new Point(0.15f + position.getX(), -0.015f + position.getY());
+		window3 = new Point(0.12f + position.getX(), -0.015f + position.getY());
+		window4 = new Point(0.09f + position.getX(), -0.015f + position.getY());
+		front_window_p1 = new Point(0.22f + position.getX(), -0.01f + position.getY());
+		front_window_p2 = new Point(0.24f + position.getX(), -0.02f + position.getY());
+		front_window_p3 = new Point(0.22f + position.getX(), -0.02f + position.getY());
 	}
 
 }

@@ -1,12 +1,13 @@
 package assignment1;
 
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.HashMap;
 
-import javax.swing.JFrame;
-
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.Animator;
@@ -14,65 +15,58 @@ import com.jogamp.opengl.util.Animator;
 import assignment1.objects.GraphicObject;
 import assignment1.objects.Mountain;
 import assignment1.objects.Plane;
+import assignment1.objects.Point;
 import assignment1.objects.Stars;
-import assignment1.objects.Static_Ground;
-import assignment1.objects.Trees;
+import assignment1.objects.StaticGroundLayers;
+import assignment1.objects.Tree;
 
 /**
  * 
  * @author Florian Widder
  *
  */
-public class Main {
+public class Main implements GLEventListener {
+
+	private GraphicObject stars;
+	private GraphicObject[] trees;
+	private GraphicObject[] planes;
+	private GraphicObject mountain;
+	private GraphicObject staticGroundLayers;
+
+	public Main() {
+		// Create Components
+		stars = new Stars(250);
+		trees = new Tree[3];
+		trees[0] = new Tree(-0.6f);
+		trees[1] = new Tree(0f);
+		trees[2] = new Tree(0.6f);
+		planes = new Plane[2];
+		planes[0] = new Plane(new Point(-1.3f, 0.3f));
+		planes[0].setDx(0.2f);
+		planes[1] = new Plane(new Point(-1.3f, 0.5f));
+		planes[1].setDx(0.35f);
+		mountain = new Mountain();
+		staticGroundLayers = new StaticGroundLayers();
+	}
+
+	private static int winWidth = 640;
+	private static int winHeight = 640;
 
 	public static void main(String[] args) {
-		// Create frame
-		JFrame frame = new JFrame("Assignment 1- 2D Animation: Planet xxx");
-		// Set openGL settings
+		Frame frame = new Frame("Assignment 1- 2D Animation: Planet Earth 2.0");
 		GLProfile profile = GLProfile.get(GLProfile.GL2);
 		GLCapabilities capabilities = new GLCapabilities(profile);
-		// Create a simple canvas for drawing
 		GLCanvas canvas = new GLCanvas(capabilities);
-		// Create Components
-		Stars stars = new Stars();
-		Trees trees = new Trees();
-		Plane plane = new Plane();
-		Mountain mountain = new Mountain();
-		Static_Ground static_Ground = new Static_Ground();
-		// Add Components to canvas
-		canvas.addGLEventListener(stars);
-		canvas.addGLEventListener(mountain);
-		canvas.addGLEventListener(trees);
-		canvas.addGLEventListener(static_Ground);
-		canvas.addGLEventListener(plane);
-		// Add Components to HashMap
-		HashMap<String, GraphicObject> Graphics = new HashMap<String, GraphicObject>();
-		Graphics.put("stars", stars);
-		Graphics.put("plane", plane);
-		Graphics.put("tree1", trees);
-		Graphics.put("mountain", mountain);
-		Graphics.put("static_ground", static_Ground);
-		new Controller(Graphics);
-		// Add canvas to frame
+		Main simple = new Main();
+		canvas.addGLEventListener(simple);
 		frame.add(canvas);
-		// Create Animator for canvas
+		frame.setSize(winWidth, winHeight);
 		final Animator animator = new Animator(canvas);
-		// Set frame settings
-		frame.setLocation(0, 0);
-		frame.setSize(1280, 1024);
-		frame.setVisible(true);
-		// Start Animator
-		animator.start();
-		// Set focus of frame to canvas
-		canvas.requestFocusInWindow();
 
-		// Make window close kill the app
 		frame.addWindowListener(new WindowAdapter() {
-			@Override
 			public void windowClosing(WindowEvent e) {
 				new Thread(new Runnable() {
 
-					@Override
 					public void run() {
 						animator.stop();
 						System.exit(0);
@@ -80,5 +74,43 @@ public class Main {
 				}).start();
 			}
 		});
+		animator.start();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+
+		canvas.requestFocusInWindow();
+
+	}
+
+	@Override
+	public void display(GLAutoDrawable drawable) {
+		GL2 gl = drawable.getGL().getGL2();
+		// Clear screen
+		gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
+		// Calculate updates
+		for (GraphicObject plane : planes)
+			plane.calculate();
+		// Redraw
+		stars.draw(gl);
+		mountain.draw(gl);
+		for (GraphicObject tree : trees)
+			tree.draw(gl);
+		staticGroundLayers.draw(gl);
+		for (GraphicObject plane : planes)
+			plane.draw(gl);
+	}
+
+	@Override
+	public void dispose(GLAutoDrawable arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void init(GLAutoDrawable drawable) {
+	}
+
+	@Override
+	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
 	}
 }
