@@ -8,14 +8,17 @@ import com.jogamp.opengl.GL2;
  * @author Florian Widder
  * @author Student ID 18999061
  */
-public class Mountain extends GraphicObject {
+public class Mountain extends AbstractGraphicObject {
 
+	/**
+	 * Saving pre calculated points
+	 */
 	private Point[][] points;
 
 	/**
 	 * Creates a random amount of Mountains.<br>
 	 * The Mountains a represented by a
-	 * {@link com.jogamp.opengl.GL2.GL_TRIANGLE_STRIP GL_TRIANGLE_STRIP}.
+	 * {@link com.jogamp.opengl.GL2#GL_TRIANGLE_STRIP GL_TRIANGLE_STRIP}.
 	 */
 	public Mountain() {
 		super();

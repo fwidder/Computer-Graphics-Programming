@@ -6,7 +6,7 @@ import com.jogamp.opengl.GL2;
  * @author Florian Widder
  * @author Student ID 18999061
  */
-public class Tree extends GraphicObject {
+public class Tree extends AbstractGraphicObject {
 	/**
 	 * Creates a Tree at the passed x position.
 	 * 
@@ -32,7 +32,7 @@ public class Tree extends GraphicObject {
 
 		// Left Tree Leaves
 		gl.glColor3f(0.2f, 0.95f, 0.2f);
-		drawCircle(gl, position.getX() + 0.05f, -0.5f, 0.1f);
+		drawCircle(gl, position.getX() + 0.05f, -0.5f, 0.1f,10);
 
 		gl.glEnd();
 

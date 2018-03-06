@@ -6,8 +6,11 @@ import com.jogamp.opengl.GL2;
  * @author Florian Widder
  * @author Student ID 18999061
  */
-public class Plane extends GraphicObject {
+public class Plane extends AbstractGraphicObject {
 
+	/**
+	 * Coordinates for the parts of the plane 
+	 */
 	private Point window1, window2, window3, window4, body_p1, body_p2, body_p3, body_p4, rudder_p1, rudder_p2,
 			rudder_p3, rudder_p4, front_window_p1, front_window_p2, front_window_p3;
 
@@ -22,11 +25,15 @@ public class Plane extends GraphicObject {
 		calculate();
 	}
 
+	private final float[] colorBody = { 1.0f, 1.0f, 0.0f };
+	private final float[] colorRudder = { 1.0f, 0.8f, 0.1f };
+	private final float[] colorWindows = { 0.0f, 0.0f, 0.0f };
+
 	@Override
 	protected void realDraw(GL2 gl) {
 		// Body
 		gl.glBegin(GL2.GL_QUADS);
-		gl.glColor3f(0f, 0f, 0.3f);
+		gl.glColor3f(colorBody[0],colorBody[1],colorBody[2]);
 
 		gl.glVertex2f(body_p1.getX(), body_p1.getY());
 		gl.glVertex2f(body_p2.getX(), body_p2.getY());
@@ -37,7 +44,7 @@ public class Plane extends GraphicObject {
 
 		// Rudder
 		gl.glBegin(GL2.GL_QUADS);
-		gl.glColor3f(0f, 0f, 0.9f);
+		gl.glColor3f(colorRudder[0],colorRudder[1],colorRudder[2]);
 
 		gl.glVertex2f(rudder_p1.getX(), rudder_p1.getY());
 		gl.glVertex2f(rudder_p2.getX(), rudder_p2.getY());
@@ -49,7 +56,7 @@ public class Plane extends GraphicObject {
 		// Windows
 		gl.glPointSize(3);
 		gl.glBegin(GL2.GL_POINTS);
-		gl.glColor3f(0f, 0f, 0.9f);
+		gl.glColor3f(colorWindows[0],colorWindows[1],colorWindows[2]);
 
 		gl.glVertex2f(window1.getX(), window1.getY());
 		gl.glVertex2f(window2.getX(), window2.getY());
@@ -60,7 +67,7 @@ public class Plane extends GraphicObject {
 
 		// Front Window
 		gl.glBegin(GL2.GL_TRIANGLES);
-		gl.glColor3f(0f, 0f, 0.9f);
+		gl.glColor3f(0.5f, 0.5f, 0.9f);
 
 		gl.glVertex2f(front_window_p1.getX(), front_window_p1.getY());
 		gl.glVertex2f(front_window_p2.getX(), front_window_p2.getY());

@@ -6,14 +6,20 @@ import com.jogamp.opengl.GL2;
  * @author Florian Widder
  * @author Student ID 18999061
  */
-public class Stars extends GraphicObject {
+public class Stars extends AbstractGraphicObject {
 
+	/**
+	 * Location of the stars
+	 */
 	protected Point[] stars;
+	/**
+	 * Size of the stars
+	 */
 	protected int[] size;
 
 	/**
 	 * Creates the passed amount of stars on the screen.<br>
-	 * Every Star is represented by a {@link com.jogamp.opengl.GL2.GL_POINTS
+	 * Every Star is represented by a {@link com.jogamp.opengl.GL2#GL_POINTS
 	 * GL2_POINTS}.
 	 * 
 	 * @param amount

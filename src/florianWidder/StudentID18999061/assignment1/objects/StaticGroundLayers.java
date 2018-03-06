@@ -6,7 +6,7 @@ import com.jogamp.opengl.GL2;
  * @author Florian Widder
  * @author Student ID 18999061
  */
-public class StaticGroundLayers extends GraphicObject {
+public class StaticGroundLayers extends AbstractGraphicObject {
 	/**
 	 * Creates two static Ground Layers.
 	 */
